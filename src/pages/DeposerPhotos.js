@@ -90,8 +90,7 @@ const ImageGrid = ({stateChanger,images }) => {
 };  
 
 
-function DeposerPhotos() {
-    const [inputs, setInputs] = useState({});
+function DeposerPhotos({data,setData}) {
     const [images, setImages] = useState([]);
 
     const onDrop = useCallback((acceptedFiles) => {
@@ -104,13 +103,15 @@ function DeposerPhotos() {
             ]);
         };
         reader.readAsDataURL(file);
+        console.log(images)
+        setData(values => ({...values, photos : images,}))
+        console.log(data);
         return file;
     });
     }, []);
 
     const handleSubmit = (event) => {
     event.preventDefault();
-    alert(inputs);
     }
 
     return (
@@ -131,7 +132,7 @@ function DeposerPhotos() {
         <form className="form-image" onSubmit={handleSubmit}>
             <div className="image-container-section">
                 <Dropzone onDrop={onDrop} accept={"image/*"} />
-                {console.log(images)}
+                {/* {console.log(images)} */}
                 <ImageGrid stateChanger={setImages} images={images} />
             </div>
         </form>
