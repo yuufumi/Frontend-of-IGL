@@ -39,7 +39,7 @@ const FormPage1 = ({data , setData}) => {
     libraries: ['places'],
 })
   if (!isLoaded) {
-    return <h1>Error loading the map</h1>
+    return <div style={{textAlign:"center",margin:"100px",fontSize:"40px",fontWeight:"200"}}>Waiting...</div>
   }
 
   const getCity = (addressArray)=>{
@@ -104,11 +104,24 @@ const FormPage1 = ({data , setData}) => {
                 lng:newLng,
               }
             })
-            setData(values => ({...values, location : {mapLocation},}))
+            setData(values => ({...values, location : {
+              address : (address) ? address : "",
+              area : (area) ? area : "",
+              city : (city) ? city : "",
+              state : (state) ? state : "",
+              zoom:10,
+              markerPosition : {
+                lat:newLat,
+                lng:newLng,
+              },
+              mapPosition : {
+                lat:newLat,
+                lng:newLng,
+              }
+            },}))
             // console.log(addressArray)
             //  console.log(mapLocation)
     })    
-    console.log(data)
   }
   
   const onPlaceSelected =(place)=>{
@@ -147,9 +160,22 @@ const FormPage1 = ({data , setData}) => {
               lng: lngValue
           },
       })
-      setData(values => ({...values, location : {mapLocation},}))
+      setData(values => ({...values, location : {
+        address: (address) ? address : '',
+        area: (area) ? area : '',
+        city: (city) ? city : '',
+        state: (state) ? state : '',
+        zoom: 10,
+        markerPosition: {
+            lat: latValue,
+            lng: lngValue
+        },
+        mapPosition: {
+            lat: latValue,
+            lng: lngValue
+        },
+      },}))
     }
-    console.log(data)
   }
   // const changeSelectOptionHandler = (event) => {
   //   setSelected(event.target.value);
@@ -187,7 +213,7 @@ const handleChange = (event) => {
 }
   
   const changeTransactionType =(e)=>{
-    if(e.target.name =='vente'){
+    if(e.target.name ==='vente'){
       setClassName(
         {
           1: 'button-form-on-click',
@@ -197,7 +223,7 @@ const handleChange = (event) => {
         }
       )
       setData(values => ({...values, typeDeTransaction : "VENTE"}))
-    }else if(e.target.name =='location'){
+    }else if(e.target.name ==='location'){
       setClassName(
         {
           1: 'button-form',
@@ -207,7 +233,7 @@ const handleChange = (event) => {
         }
       )
       setData(values => ({...values, typeDeTransaction : "LOCATION"}))
-    }else if(e.target.name =='echange'){
+    }else if(e.target.name ==='echange'){
       setClassName(
         {
           1: 'button-form',
@@ -217,7 +243,7 @@ const handleChange = (event) => {
         }
       )
       setData(values => ({...values, typeDeTransaction : "ECHANGE"}))
-    }else if(e.target.name =='vacances'){
+    }else if(e.target.name ==='vacances'){
       setClassName(
         {
           1: 'button-form',
@@ -334,14 +360,13 @@ const [data, setData] = useState({
     prix :0,
     location:{},
     description :"",
-    photos:[]
   })
-
+const [photos,setPhotos]= useState([])
 const PageDisplay = ()=> {
   if (page === 0) {
-    return <FormPage1 data={data} setData={setData}/>
+    return <FormPage1 data={data} setData={setData} />
   }else {
-    return <DeposerPhotos data={data} setData={setData}/>
+    return <DeposerPhotos data={data} setData={setData} passPhotosToParent = {setPhotos}/>
   }
 }
   // const handleSubmit = (event) => {
@@ -352,17 +377,18 @@ const PageDisplay = ()=> {
   return (
     <>
         {PageDisplay()}
-        <button className="continuer" 
-          disabled = {page == 0}
+        <button className="continuer"
+          disabled = {page === 0}
           onClick={()=>{setPage((currPage)=>currPage-1)}}>
           Retour
         </button>
         <button className="continuer" 
-          disabled = {page == 1}
+          // disabled = {page === 1}
           onClick={()=>{
             setPage((currPage)=>currPage+1)
+            console.log(photos)
             }}>
-            Continuer
+            { (page) ? "Terminer" : "Continuer"}
         </button>
     </>
   )

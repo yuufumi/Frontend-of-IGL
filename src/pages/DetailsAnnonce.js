@@ -1,6 +1,6 @@
 import React, { useState, useEffect,useCallback ,useRef} from "react";
 import { useParams } from "react-router-dom";
-import { useJsApiLoader, GoogleMap, Marker} from "@react-google-maps/api";
+import { useJsApiLoader, GoogleMap, MarkerF} from "@react-google-maps/api";
 
 import "../App.css";
 import descriptionIcon from "../images/Description-Icon.svg";
@@ -13,8 +13,9 @@ import leftarrow from "../images/leftarrow.svg";
 import rightarrow from "../images/rightarrow.svg";
 
 const DetailsAnnonce = () => {
-    const center ={ lat: 48.8584, lng: 2.2945}
 
+    const center ={ lat: 48.8584, lng: 2.2945}
+    
     const [message, setMessage] = useState("");
     const {id} = useParams()
     const {isLoaded} = useJsApiLoader({
@@ -27,7 +28,7 @@ const DetailsAnnonce = () => {
         alert(`The name you entered was: ${message}`)
       }
       if (!isLoaded) {
-        return <h1>Error loading the map</h1>
+        return <div style={{textAlign:"center",margin:"100px",fontSize:"40px",fontWeight:"200"}}>Waiting...</div>
       }
     return(
         <>
@@ -50,8 +51,7 @@ const DetailsAnnonce = () => {
                 </div>
                 <div className="details-annonce-map" >
                     <GoogleMap center ={center} zoom = {15} mapContainerStyle={{width: '100%', height: '100%'}} options ={{zoomcontrol: false,streetViewControl: false,mapTypeControl:false,fullscreenControl:false}}>
-                        <Marker position ={center} />
-                        <Marker position ={center} />
+                        <MarkerF position ={center} />
                     </GoogleMap>
                 </div>
             </div>

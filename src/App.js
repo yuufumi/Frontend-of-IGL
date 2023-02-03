@@ -5,7 +5,6 @@ import MesAnnonces from "./pages/MesAnnonces";
 import MonProfil from "./pages/MonProfil";
 import DetailsAnnonce from "./pages/DetailsAnnonce";
 import DeposerAnnonce from "./pages/DeposerAnnonce";
-import DeposerPhotos from './pages/DeposerPhotos';
 import MonCompteLayout from './pages/MonCompteLayout';
 import LogedNavBar from "./components/LogedNavBar";
 import MyFooter from "./components/MyFooter";

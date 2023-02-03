@@ -35,7 +35,7 @@ function Dropzone({ onDrop, accept}) {
 
   // ImageList Component//
 
-const ImageGrid = ({stateChanger,images }) => {
+const ImageGrid = ({stateChanger,images,deletingInParent}) => {
     // render each image by calling Image component
     // Return the list of files //
     const dragItem = useRef();
@@ -58,10 +58,12 @@ const ImageGrid = ({stateChanger,images }) => {
         dragItem.current = null;
         dragOverItem.current = null;
         stateChanger(copyListItems);
+        deletingInParent(copyListItems);
       };
       const removeElement = (index) => {
         const newFruits = images.filter((_, i) => i !== index);
         stateChanger(newFruits);
+        deletingInParent(newFruits)
       };
     return (
         <div className="file-list">{
@@ -90,7 +92,7 @@ const ImageGrid = ({stateChanger,images }) => {
 };  
 
 
-function DeposerPhotos({data,setData}) {
+function DeposerPhotos({data,setData,passPhotosToParent}) {
     const [images, setImages] = useState([]);
 
     const onDrop = useCallback((acceptedFiles) => {
@@ -101,11 +103,12 @@ function DeposerPhotos({data,setData}) {
             ...prevState,
             {src: e.target.result },
             ]);
+        passPhotosToParent((prevState) => [
+                ...prevState,
+                {src: e.target.result },
+                ])
         };
         reader.readAsDataURL(file);
-        console.log(images)
-        setData(values => ({...values, photos : images,}))
-        console.log(data);
         return file;
     });
     }, []);
@@ -133,7 +136,7 @@ function DeposerPhotos({data,setData}) {
             <div className="image-container-section">
                 <Dropzone onDrop={onDrop} accept={"image/*"} />
                 {/* {console.log(images)} */}
-                <ImageGrid stateChanger={setImages} images={images} />
+                <ImageGrid stateChanger={setImages} images={images} deletingInParent={passPhotosToParent}/>
             </div>
         </form>
     </div>
