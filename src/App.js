@@ -25,7 +25,8 @@ const App = () => {
         <Route path="/DeposerAnnonce" element={<DeposerAnnonce />} />
         {/* <Route path="/Annonces" element={<DetailsAnnonce />} /> */}
         <Route path="/Annonces/:id" element={<DetailsAnnonce />} />
-        <Route path="*" element= {<h1>NotFound</h1>} />
+        <Route path="*" element= {        <div style={{textAlign:"center",margin:"100px",fontSize:"40px",fontWeight:"200"}}>NotFound</div>
+} />
       </Routes>
       <MyFooter />
       </>

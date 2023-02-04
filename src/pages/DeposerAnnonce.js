@@ -5,6 +5,7 @@ import Autocomplete  from "react-google-autocomplete";
 // import { type } from "@testing-library/user-event/dist/type";
 
 import DeposerPhotos from "./DeposerPhotos";
+import { Link } from "react-router-dom";
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
 
@@ -388,7 +389,7 @@ const PageDisplay = ()=> {
             setPage((currPage)=>currPage+1)
             console.log(photos)
             }}>
-            { (page) ? "Terminer" : "Continuer"}
+            { (page) ? <Link to="/MonCompte/MesAnnonces" className="nav-container-center-icons-icon">Terminer</Link> : <>Continuer</>}
         </button>
     </>
   )
