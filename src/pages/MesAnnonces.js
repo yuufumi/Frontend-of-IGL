@@ -13,13 +13,18 @@ function Titre({titre}) {
     )
 }
 
-function LesAnnonces({annonces}) {
+function LesAnnonces({annonces,setAnnonces}) {
+  
+  const handleClick =(index)=>{
+      const newAnnonces = annonces.filter((_, i) => i !== index);
+      setAnnonces(newAnnonces);
+    };
     return(
         <>
         {annonces?.length > 0 ? (
           <div className="app">
-            {annonces.map((Ai) => (
-              <MaPremiereAnnonce Ai={Ai} />
+            {annonces.map((Ai,index) => (
+              <MaPremiereAnnonce Ai={Ai} handleClick={handleClick} index={index}/>
             ))}
           </div>
         ) : (
@@ -34,7 +39,7 @@ function MesAnnoncesContainer(props) {
     return(
         <div className="c-page">
             <Titre titre = {props.titre} />
-            <LesAnnonces annonces = {props.annonces}/>
+            <LesAnnonces annonces = {props.annonces} setAnnonces={props.setAnnonces}/>
     </div>
     )
 }
@@ -61,7 +66,7 @@ const MesAnnonces = () => {
 
     return (
         <>
-        <MesAnnoncesContainer annonces={annonces} titre={titre} />
+        <MesAnnoncesContainer annonces={annonces} titre={titre} setAnnonces={setAnnonces}/>
         </>
     )
   };

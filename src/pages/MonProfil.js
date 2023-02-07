@@ -1,7 +1,7 @@
 import React, { useState, useEffect,useCallback ,useRef} from "react";
 import { useParams } from "react-router-dom";
 import {useDropzone} from 'react-dropzone';
-
+import { Link } from "react-router-dom";
 
 import "../App.css";
 import editIcon from "../images/icons8-modify-58 (1) 1.svg";
@@ -128,7 +128,9 @@ function MessageProfil({messages,setMessages}) {
                   <img className="profile-image" src={mouh} alt="Profil"/>
                   <div className="nom-date-message">
                   <div className="nom-date">
+                    <Link to="/Profil/12">
                       <div className="nom">{item.senderNom + " " + item.senderPrenom} </div>
+                    </Link>
                       <div className="date-message">{item.date}</div>
                   </div>
               <   div className="le-message">{item.message}</div>

@@ -87,7 +87,7 @@ const DetailsAnnonce = () => {
                     </div>
                 </div>
                 <div className="details-annonce-map" >
-                    <GoogleMap center = {annonceInfo.location.mapPosition} zoom = {15} mapContainerStyle={{width: '100%', height: '100%'}} options ={{zoomcontrol: false,streetViewControl: false,mapTypeControl:false,fullscreenControl:false}}>
+                    <GoogleMap center = {annonceInfo.location.mapPosition} zoom = {10} mapContainerStyle={{width: '100%', height: '100%'}} options ={{zoomcontrol: false,streetViewControl: false,mapTypeControl:false,fullscreenControl:false}}>
                         <MarkerF position = {annonceInfo.location.markerPosition} />
                     </GoogleMap>
                 </div>

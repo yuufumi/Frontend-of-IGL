@@ -8,6 +8,7 @@ import DeposerAnnonce from "./pages/DeposerAnnonce";
 import MonCompteLayout from './pages/MonCompteLayout';
 import LogedNavBar from "./components/LogedNavBar";
 import MyFooter from "./components/MyFooter";
+import ProfileUtilisateur from "./pages/ProfilUtilisateur";
 
 import "./App.css";
 import "./Form.css";
@@ -25,7 +26,8 @@ const App = () => {
         <Route path="/DeposerAnnonce" element={<DeposerAnnonce />} />
         {/* <Route path="/Annonces" element={<DetailsAnnonce />} /> */}
         <Route path="/Annonces/:id" element={<DetailsAnnonce />} />
-        <Route path="*" element= {        <div style={{textAlign:"center",margin:"100px",fontSize:"40px",fontWeight:"200"}}>NotFound</div>
+        <Route path="/Profil/:id" element={<ProfileUtilisateur />} />
+        <Route path="*" element= {<div style={{textAlign:"center",margin:"100px",fontSize:"40px",fontWeight:"200"}}>NotFound</div>
 } />
       </Routes>
       <MyFooter />

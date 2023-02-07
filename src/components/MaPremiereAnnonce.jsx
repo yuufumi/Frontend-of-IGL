@@ -4,7 +4,8 @@ import eyeIcon from '../images/icons8-eye-90 1.svg'
 import removeIcon from '../images/delete.svg'
 import '../App.css'
 
-const MaPremiereAnnonce =({Ai})=>{
+const MaPremiereAnnonce =({Ai,handleClick,index})=>{
+
     return(
     <div className="firstAnnonce">
         <div className="cadre">
@@ -27,7 +28,7 @@ const MaPremiereAnnonce =({Ai})=>{
                     </div>
                     <div>
                         <button className="actionButton">
-                        <img className="delete" src={removeIcon} alt= "removeIcon"/>
+                        <img className="delete" src={removeIcon} alt= "removeIcon" onClick={()=>handleClick(index)}/>
                         </button>
                     </div>
                 </div>
